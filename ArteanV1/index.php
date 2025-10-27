@@ -1,28 +1,27 @@
 <?php
 /**
- * @title: Proyecto integrador Ev01 - Página principal
- * @description:  Bienvenida a la aplicación
+ * @title: Proyecto de Competición - Página principal
+ * @description:  Punto de entrada de la aplicación. Redirige o muestra bienvenida.
  *
- * @version    0.1
+ * @version    1.0
  *
- * @author ander_frago@cuatrovientos.org
+ * @author     Ander Frago & Miguel Goyena <miguel_goyena@cuatrovientos.org>
  */
+session_start();
+
+// Si el usuario ha consultado un equipo anteriormente, se le redirige a la página de partidos de ese equipo.
+if (isset($_SESSION['team_id'])) {
+    // header('Location: app/team_matches.php?id=' . $_SESSION['team_id']);
+    exit(); // Es importante terminar el script después de una redirección.
+}
 
 include 'templates/header.php';
 ?>
-<!-- Bootstrap core CSS
-* TODO REVISE Este es el aspecto negativo de esta estructura ya que el código esta duplicado
-Y además no está en ASSETS
-================================================== -->
-<link rel="stylesheet" href=".\assets\css\bootstrap.css">
 
 <div class="container-fluid py-5 my-5 bg-light">
   <div id="bienvenida" class="container">
-    <h1 class='display-3'>Bienvenid@ a Artean</h1>
-    <?php
-    if ($loggedin) echo "<p class='display-6'> Has iniciado sesión: ".$user."</p>";
-    else           echo "<p class='display-6'> por favor, regístrate o inicia sesión.</p>";
-    ?>
+    <h1 class='display-3'>Bienvenid@ al Gestor de Competiciones</h1>
+    <p class='display-6'>Utiliza el menú superior para navegar entre Equipos y Partidos.</p>
   </div>
 </div>
 <div id="bienvenida" class="img-fluid" alt="Responsive image">
@@ -38,13 +37,6 @@ Y además no está en ASSETS
     <span class="text-muted">Desarrollo Web - 2º DAM.</span>
   </div>
 </footer>
-
-<!-- Bootstrap core JavaScript
-* TODO REVISE Este es el aspecto negativo de esta estructura ya que el código esta duplicado
-================================================== -->
-
-<script src=".\assets\js\bootstrap.js"></script>
-
 </body>
 
 </html>

@@ -11,41 +11,8 @@
 
 require_once 'templates/header.php';
 
-// Al pulsar el boton del formulario se recarga la misma página, volviendo a ejecutar este script.
-// En caso de que se haya  completado los valores del formulario se verifica la existencia de usuarios en la base de datos
-// para los valores introducidos.
-$error = "";
-if (isset($_POST['user']))
-{
-  $user = $_POST['user'];
-  $pass = $_POST['pass'];
-  
-  if ($user == "" || $pass == "")
-      $error = "Debes completar todos los campos<br>";
-  else
-  {
-    
-    //TODO Comprueba que es correcta el User y PASS
-    if ()
-    {
-      $error = "<span class='error'>Email/Contraseña invalida</span><br><br>";
-    }
-    else
-    {
-      // TODO Realiza la gestión de la sesión de usuario utilizando SessionHelper
-      
-        
-      // TODO En caso de un registro  exitoso hacemos la redireccion correspondiente
-      
-    }
-  }
-}
-// TODO En caso de que no se haya completado el formulario,
-// analizamos si hay variable de sesión almacenada, volvemos a utilizar el SessionHelper
-else if (){
-    // TODO En caso de que exista variable de sesión redireccionamos a la página principal
-     
-}
+
+
 ?>
 <div class="container">
   <form class="form-horizontal" role="form" method="POST" action="login.php">
