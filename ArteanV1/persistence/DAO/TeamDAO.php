@@ -11,7 +11,7 @@ class TeamDAO extends GenericDAOTeams {
     }
 
     public function selectById($id) {
-        $query = "SELECT id, name, stadium FROM " . self::TEAM_TABLE . " WHERE id = ?";
+        $query = "SELECT id, nombre, estadio FROM " . self::TEAM_TABLE . " WHERE id = ?";
         $stmt = mysqli_prepare($this->conn, $query);
         mysqli_stmt_bind_param($stmt, 'i', $id);
         mysqli_stmt_execute($stmt);
@@ -20,10 +20,20 @@ class TeamDAO extends GenericDAOTeams {
     }
 
     public function insert($name, $stadium) {
-        $query = "INSERT INTO " . self::TEAM_TABLE . " (name, stadium) VALUES (?, ?)";
+        $query = "INSERT INTO " . self::TEAM_TABLE . " (nombre, estadio) VALUES (?, ?)";
         $stmt = mysqli_prepare($this->conn, $query);
         mysqli_stmt_bind_param($stmt, 'ss', $name, $stadium);
         return $stmt->execute();
+    }
+
+    public function checkExistsByName($name) {
+        $query = "SELECT id FROM " . self::TEAM_TABLE . " WHERE nombre = ?";
+        $stmt = mysqli_prepare($this->conn, $query);
+        mysqli_stmt_bind_param($stmt, 's', $name);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+        $count = mysqli_stmt_num_rows($stmt);
+        return $count > 0;
     }
 
     public function delete($id) {
@@ -32,9 +42,8 @@ class TeamDAO extends GenericDAOTeams {
         mysqli_stmt_bind_param($stmt, 'i', $id);
         return $stmt->execute();
     }
-
     public function update($id, $name, $stadium) {
-        $query = "UPDATE " . self::TEAM_TABLE . " SET name = ?, stadium = ? WHERE id = ?";
+        $query = "UPDATE " . self::TEAM_TABLE . " SET nombre = ?, estadio = ? WHERE id = ?";
         $stmt = mysqli_prepare($this->conn, $query);
         mysqli_stmt_bind_param($stmt, 'ssi', $name, $stadium, $id);
         return $stmt->execute();
