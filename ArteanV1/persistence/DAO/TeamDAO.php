@@ -1,6 +1,6 @@
 <?php
-require 'GenericDAOTeams.php';
-class TeamDAO extends GenericDAOTeams {
+require_once 'GenericDAO.php';
+class TeamDAO extends GenericDAO {
 
     const TEAM_TABLE = 'equipo';
     public function selectAll() {

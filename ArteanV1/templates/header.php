@@ -38,7 +38,7 @@
     <div class="collapse navbar-collapse" id="navbarToggler">
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
             <li class="nav-item">
-                <a class="nav-link" href="/Futbol/ArteanV1/app/teams.php">Equipos</a>
+                <a class="nav-link" href="/Futbol/ArteanV1/app/teams.php?view=all">Equipos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/Futbol/ArteanV1/app/matches.php">Partidos</a>

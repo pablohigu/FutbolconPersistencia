@@ -8,6 +8,11 @@
  * @author     Ander Frago & Miguel Goyena <miguel_goyena@cuatrovientos.org>
  */
 session_start();
+
+if (isset($_SESSION['team_id']) && !empty($_SESSION['team_id']) ) {
+    header('Location: team_matches.php?id=' . $_SESSION['team_id']);
+    exit();
+}
 require_once __DIR__ . '/../persistence/conf/PersistentManager.php';
 require_once __DIR__ . '/../persistence/DAO/TeamDAO.php';
 
