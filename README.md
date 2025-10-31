@@ -1,13 +1,9 @@
-Claro, aquí tienes el archivo `README.md` con un formato limpio y profesional, listo para añadir a tu proyecto.
 
 -----
 
-# Gestor de Competición de Fútbol (ArteanV1)
+# Gestor de Competición de Fútbol
 
 Un proyecto de aplicación web PHP para la gestión de equipos y partidos de una liga de fútbol, construido con una arquitectura orientada a objetos y un patrón DAO.
-
-  
-
 -----
 
 ## 1\. Características Principales
