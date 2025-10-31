@@ -41,15 +41,15 @@ include __DIR__ . '/../templates/header.php';
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h2 class="mb-0">Partidos de: <?= htmlspecialchars($team['nombre']) ?></h2>
-            <p class="lead text-muted">Estadio: <?= htmlspecialchars($team['estadio']) ?></p>
+            <h2 class="mb-0"><i class="fas fa-users text-primary mr-2"></i><?= htmlspecialchars($team['nombre']) ?></h2>
+            <p class="lead text-muted mb-0"><i class="fas fa-map-marker-alt mr-2"></i><?= htmlspecialchars($team['estadio']) ?></p>
         </div>
-        <a href="teams.php" class="btn btn-secondary">Volver a Equipos</a>
+        <a href="logout.php" class="btn btn-danger"><i class="fas fa-sign-out-alt mr-2"></i>Salir</a>
     </div>
 
     <div class="card">
         <div class="card-header">
-            <h4>Historial de Partidos</h4>
+            Historial de Partidos
         </div>
         <div class="card-body">
             <?php if (!empty($matches)): ?>
@@ -58,11 +58,11 @@ include __DIR__ . '/../templates/header.php';
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div>
                                 <span class="font-weight-bold <?= $match['id_equipo_local'] == $team_id ? 'text-primary' : '' ?>"><?= htmlspecialchars($match['local_team_name']) ?></span>
-                                vs
+                                <span class="text-muted mx-2">vs</span>
                                 <span class="font-weight-bold <?= $match['id_equipo_visitante'] == $team_id ? 'text-primary' : '' ?>"><?= htmlspecialchars($match['visitor_team_name']) ?></span>
                             </div>
                             <div class="text-center">
-                                <span class="badge badge-dark p-2" style="font-size: 1.1rem; min-width: 50px;"><?= htmlspecialchars($match['resultado'] ?? 'N/J') ?></span>
+                                <span class="badge badge-dark p-2" style="font-size: 1rem; min-width: 45px;"><?= htmlspecialchars($match['resultado'] ?? 'N/J') ?></span>
                                 <small class="d-block text-muted mt-1">Jornada <?= htmlspecialchars($match['jornada']) ?></small>
                             </div>
                         </li>
@@ -73,6 +73,7 @@ include __DIR__ . '/../templates/header.php';
             <?php endif; ?>
         </div>
     </div>
-</div>
+    </main>
+</div>    
 </body>
 </html>

@@ -20,20 +20,23 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    <!-- Font Awesome (para iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 
-<body>
+<body class="bg-light">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
     <button class="navbar-toggler navbar-toggler-right" type="button"
             data-toggle="collapse" data-target="#navbarToggler"
             aria-controls="navbarToggler" aria-expanded="false"
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="/Futbol/ArteanV1/index.php">Competición</a>
+    <a class="navbar-brand" href="/Futbol/ArteanV1/index.php">
+        <i class="fas fa-futbol mr-2"></i>Competición
+    </a>
 
     <div class="collapse navbar-collapse" id="navbarToggler">
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
@@ -47,7 +50,9 @@
     </div>
 </nav>
 
-<!-- Bootstrap y dependencias JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<div class="container">
+    <main class="bg-white p-4 my-4 rounded shadow-sm">
+        <!-- Bootstrap y dependencias JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

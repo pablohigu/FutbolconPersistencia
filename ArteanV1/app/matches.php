@@ -53,7 +53,7 @@ include __DIR__ . '/../templates/header.php';
 ?>
 
 <div class="container mt-4">
-    <h2 class="mb-4">Gestión de Partidos</h2>
+    <h2 class="mb-4 border-bottom pb-2"><i class="fas fa-calendar-alt mr-2"></i>Gestión de Partidos</h2>
 
     <?php if (!empty($error)): ?>
         <div class="alert alert-danger" role="alert"><?= $error ?></div>
@@ -62,7 +62,7 @@ include __DIR__ . '/../templates/header.php';
     <!-- Formulario para AÑADIR nuevo partido -->
     <div class="card mb-5">
         <div class="card-header">
-            <h3>Añadir Nuevo Partido</h3>
+            Añadir Nuevo Partido
         </div>
         <div class="card-body">
             <form method="POST" action="matches.php">
@@ -107,7 +107,7 @@ include __DIR__ . '/../templates/header.php';
 
     <!-- Filtro y visualización de partidos por JORNADA -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3>Resultados de la Jornada</h3>
+        <h3 class="mb-0">Resultados de la Jornada</h3>
         <form method="GET" action="matches.php" class="form-inline">
             <label for="jornada_filter" class="mr-2">Seleccionar Jornada:</label>
             <select name="jornada" id="jornada_filter" class="form-control" onchange="this.form.submit()">
@@ -131,12 +131,13 @@ include __DIR__ . '/../templates/header.php';
                     <?php foreach ($matches_of_jornada as $match): ?>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div>
-                                <span class="font-weight-bold"><?= htmlspecialchars($match['local_team_name']) ?></span> vs 
+                                <span class="font-weight-bold"><?= htmlspecialchars($match['local_team_name']) ?></span>
+                                <span class="text-muted mx-2">vs</span>
                                 <span class="font-weight-bold"><?= htmlspecialchars($match['visitor_team_name']) ?></span>
                                 <br>
-                                <small class="text-muted">Estadio: <?= htmlspecialchars($match['stadium']) ?></small>
+                                <small class="text-muted"><i class="fas fa-map-marker-alt mr-1"></i><?= htmlspecialchars($match['stadium']) ?></small>
                             </div>
-                            <span class="badge badge-primary p-2" style="font-size: 1.2rem; min-width: 40px;"><?= htmlspecialchars($match['resultado']) ?></span>
+                            <span class="badge badge-dark p-2" style="font-size: 1.1rem; min-width: 45px;"><?= htmlspecialchars($match['resultado']) ?></span>
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -145,7 +146,7 @@ include __DIR__ . '/../templates/header.php';
             <?php endif; ?>
         </div>
     </div>
-</div>
-
+    </main>
+</div>    
 </body>
 </html>

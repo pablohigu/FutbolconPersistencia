@@ -46,7 +46,7 @@ include __DIR__ . '/../templates/header.php';
 ?>
 
 <div class="container mt-4">
-    <h2 class="mb-4">Gestión de Equipos</h2>
+    <h2 class="mb-4 border-bottom pb-2"><i class="fas fa-shield-alt mr-2"></i>Gestión de Equipos</h2>
 
     <?php if (!empty($error)): ?>
         <div class="alert alert-danger" role="alert">
@@ -57,7 +57,7 @@ include __DIR__ . '/../templates/header.php';
     <!-- Formulario para añadir nuevo equipo -->
     <div class="card mb-4">
         <div class="card-header">
-            <h3>Añadir Nuevo Equipo</h3>
+            Añadir Nuevo Equipo
         </div>
         <div class="card-body">
             <form method="POST" action="teams.php">
@@ -79,19 +79,25 @@ include __DIR__ . '/../templates/header.php';
     </div>
 
     <!-- Lista de equipos existentes -->
-    <h3>Equipos en la Competición</h3>
-    <div class="list-group">
+    <h3 class="mb-3">Equipos en la Competición</h3>
+    <div class="row">
         <?php if (!empty($teams)): ?>
             <?php foreach ($teams as $team): ?>
-                <a href="team_matches.php?id=<?= htmlspecialchars($team['id']) ?>" class="list-group-item list-group-item-action">
-                    <h5 class="mb-1"><?= htmlspecialchars($team['nombre']) ?></h5>
-                    <p class="mb-1 text-muted">Estadio: <?= htmlspecialchars($team['estadio']) ?></p>
-                </a>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><i class="fas fa-users mr-2 text-primary"></i><?= htmlspecialchars($team['nombre']) ?></h5>
+                            <p class="card-text text-muted flex-grow-1"><i class="fas fa-map-marker-alt mr-2"></i><?= htmlspecialchars($team['estadio']) ?></p>
+                            <a href="team_matches.php?id=<?= htmlspecialchars($team['id']) ?>" class="btn btn-outline-primary mt-auto">Ver Partidos</a>
+                        </div>
+                    </div>
+                </div>
             <?php endforeach; ?>
         <?php else: ?>
             <p class="text-center text-muted">No hay equipos registrados todavía. ¡Añade el primero!</p>
         <?php endif; ?>
     </div>
-</div>
+    </main>
+</div>    
 </body>
 </html>
