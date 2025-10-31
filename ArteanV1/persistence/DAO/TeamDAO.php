@@ -35,18 +35,5 @@ class TeamDAO extends GenericDAO {
         $count = mysqli_stmt_num_rows($stmt);
         return $count > 0;
     }
-
-    public function delete($id) {
-        $query = "DELETE FROM " . self::TEAM_TABLE . " WHERE id = ?";
-        $stmt = mysqli_prepare($this->conn, $query);
-        mysqli_stmt_bind_param($stmt, 'i', $id);
-        return $stmt->execute();
-    }
-    public function update($id, $name, $stadium) {
-        $query = "UPDATE " . self::TEAM_TABLE . " SET nombre = ?, estadio = ? WHERE id = ?";
-        $stmt = mysqli_prepare($this->conn, $query);
-        mysqli_stmt_bind_param($stmt, 'ssi', $name, $stadium, $id);
-        return $stmt->execute();
-    }
 }
 ?>

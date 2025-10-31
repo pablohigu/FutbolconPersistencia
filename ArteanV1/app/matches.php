@@ -28,6 +28,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_match'])) {
         $error = "Un equipo no puede jugar contra sí mismo.";
     } elseif ($matchDAO->checkIfMatchExists($local_id, $visitor_id)) {
         $error = "Estos dos equipos ya se han enfrentado en una jornada anterior.";
+    } elseif ($matchDAO->checkIfTeamPlaysInJornada($local_id, $jornada)) {
+        $error = "El equipo local ya tiene un partido en esta jornada.";
+    } elseif ($matchDAO->checkIfTeamPlaysInJornada($visitor_id, $jornada)) {
+        $error = "El equipo visitante ya tiene un partido en esta jornada.";
     } else {
         $matchDAO->insert($jornada, $local_id, $visitor_id, $resultado);
         header("Location: matches.php?jornada=" . $jornada); // Redirigir a la jornada recién actualizada

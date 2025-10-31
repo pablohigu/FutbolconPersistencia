@@ -7,8 +7,6 @@ abstract class GenericDAO {
   public function __construct() {
     $this->conn = PersistentManager::getInstance()->get_connection();
   }
-
   // métodos abstractos para CRUD de clases que hereden
-  abstract protected function selectAll();
   abstract protected function selectById($id);
 }

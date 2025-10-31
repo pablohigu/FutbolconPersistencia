@@ -27,8 +27,7 @@ $matchDAO = new MatchDAO();
 
 // 3. Obtener la información del equipo y sus partidos
 $team = $teamDAO->selectById($team_id);
-$matches = $matchDAO->selectByTeamId($team_id);
-
+$matches = $matchDAO->selectById($team_id);
 // Si el equipo no existe, redirigir
 if (!$team) {
     header('Location: teams.php');

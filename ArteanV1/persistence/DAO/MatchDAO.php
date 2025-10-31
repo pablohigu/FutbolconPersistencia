@@ -4,31 +4,11 @@ require_once 'GenericDAO.php';
 class MatchDAO extends GenericDAO {
 
     const MATCH_TABLE = 'partido';
-
-    public function selectAll() {
-        $query = "SELECT p.*, el.nombre as local_team_name, ev.nombre as visitor_team_name 
-                  FROM " . self::MATCH_TABLE . " p
-                  JOIN equipo el ON p.id_equipo_local = el.id
-                  JOIN equipo ev ON p.id_equipo_visitante = ev.id
-                  ORDER BY p.jornada, p.id";
-        $result = mysqli_query($this->conn, $query);
-        return mysqli_fetch_all($result, MYSQLI_ASSOC);
-    }
-
-    public function selectById($id) {
-        $query = "SELECT * FROM " . self::MATCH_TABLE . " WHERE id = ?";
-        $stmt = mysqli_prepare($this->conn, $query);
-        mysqli_stmt_bind_param($stmt, 'i', $id);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        return mysqli_fetch_assoc($result);
-    }
-
     /**
      * Selecciona todos los partidos de un equipo específico, ya sea como local o visitante.
      * Se une con la tabla de equipos para obtener los nombres de los contrincantes.
      */
-    public function selectByTeamId($teamId) {
+    public function selectById($teamId) {
         $query = "SELECT 
                     p.id, 
                     p.jornada,
@@ -87,6 +67,18 @@ class MatchDAO extends GenericDAO {
         $query = "SELECT id FROM " . self::MATCH_TABLE . " WHERE (id_equipo_local = ? AND id_equipo_visitante = ?) OR (id_equipo_local = ? AND id_equipo_visitante = ?)";
         $stmt = mysqli_prepare($this->conn, $query);
         mysqli_stmt_bind_param($stmt, 'iiii', $team1_id, $team2_id, $team2_id, $team1_id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+        return mysqli_stmt_num_rows($stmt) > 0;
+    }
+
+    /**
+     * Comprueba si un equipo ya juega en una jornada específica.
+     */
+    public function checkIfTeamPlaysInJornada($teamId, $jornada) {
+        $query = "SELECT id FROM " . self::MATCH_TABLE . " WHERE jornada = ? AND (id_equipo_local = ? OR id_equipo_visitante = ?)";
+        $stmt = mysqli_prepare($this->conn, $query);
+        mysqli_stmt_bind_param($stmt, 'iii', $jornada, $teamId, $teamId);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_store_result($stmt);
         return mysqli_stmt_num_rows($stmt) > 0;
