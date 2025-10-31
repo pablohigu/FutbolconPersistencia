@@ -12,7 +12,10 @@ require_once __DIR__ . '/../persistence/DAO/TeamDAO.php';
 require_once __DIR__ . '/../utils/SessionHelper.php';
 
 SessionHelper::startSessionIfNotStarted();
-
+if (isset($_SESSION['team_id']) && !empty($_SESSION['team_id']) ) {
+    header('Location: team_matches.php?id=' . $_SESSION['team_id']);
+    exit();
+}
 $error = ""; // Variable para guardar el mensaje de error
 $teamDAO = new TeamDAO();
 

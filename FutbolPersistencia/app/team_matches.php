@@ -7,21 +7,20 @@
  *
  * @author     Ander Frago & Miguel Goyena <miguel_goyena@cuatrovientos.org>
  */
-require_once __DIR__ . '/../templates/header.php';
+
 require_once __DIR__ . '/../persistence/DAO/TeamDAO.php';
 require_once __DIR__ . '/../persistence/DAO/MatchDAO.php';
 require_once __DIR__ . '/../utils/SessionHelper.php';
-
 SessionHelper::startSessionIfNotStarted();
-// 1. Obtener el ID del equipo de la URL
+// Obtener y validar el ID del equipo de la URL
 $team_id = $_GET['id'] ?? null;
-
 if (!$team_id || !is_numeric($team_id)) {
     // Si no hay ID o no es válido, redirigir a la página de equipos
     header('Location: /' . $urlApp . 'app/teams.php');
     exit();
 }
-
+// Guardar en sesión el último equipo consultado
+$_SESSION['team_id'] = $team_id;
 // 2. Crear instancias de los DAOs
 $teamDAO = new TeamDAO();
 $matchDAO = new MatchDAO();
@@ -34,8 +33,9 @@ if (!$team) {
     header('Location: /' . $urlApp . 'app/teams.php');
     exit();
 }
-// Guardar en sesión el último equipo consultado
-$_SESSION['team_id'] = $team_id;
+
+// 4. Una vez toda la lógica está procesada, incluimos la cabecera para renderizar la vista
+require_once __DIR__ . '/../templates/header.php';
 ?>
 
 <div class="container mt-4">

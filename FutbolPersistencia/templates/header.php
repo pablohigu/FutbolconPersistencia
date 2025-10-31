@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../utils/SessionHelper.php';
+SessionHelper::startSessionIfNotStarted();
 /**
  * @title: Proyecto de Competición - Cabecera y barra de navegación.
  * @description:  Muestra el menú principal de la aplicación.
@@ -8,7 +10,7 @@
  * @author     Ander Frago & Miguel Goyena <miguel_goyena@cuatrovientos.org>
  */
   $dir = __DIR__;
-  $urlApp = "Futbol/ArteanV1/";
+  $urlApp = "Futbol/FutbolPersistencia/";
 ?>
 <head>
     <meta charset="utf-8">

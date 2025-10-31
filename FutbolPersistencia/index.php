@@ -8,9 +8,11 @@
  * @author     Ander Frago & Miguel Goyena <miguel_goyena@cuatrovientos.org>
  */
 require_once __DIR__ . '/utils/SessionHelper.php';
-require_once __DIR__ . '/templates/header.php'; // Incluir para tener $urlApp
 
 SessionHelper::startSessionIfNotStarted();
+
+// Definimos la URL base de la aplicación.
+$urlApp = "Futbol/FutbolPersistencia/";
 
 // Si el usuario ha consultado un equipo anteriormente, se le redirige a la página de partidos de ese equipo.
 if (isset($_SESSION['team_id']) && !empty($_SESSION['team_id'])) {

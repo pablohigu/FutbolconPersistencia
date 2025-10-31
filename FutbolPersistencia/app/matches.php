@@ -11,8 +11,7 @@ require_once __DIR__ . '/../templates/header.php';
 require_once __DIR__ . '/../persistence/DAO/TeamDAO.php';
 require_once __DIR__ . '/../persistence/DAO/MatchDAO.php';
 require_once __DIR__ . '/../utils/SessionHelper.php';
-
-SessionHelper::startSessionIfNotStarted();
+ SessionHelper::startSessionIfNotStarted();
 $error = "";
 $teamDAO = new TeamDAO();
 $matchDAO = new MatchDAO();
