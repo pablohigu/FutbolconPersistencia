@@ -7,14 +7,11 @@
  *
  * @author     Ander Frago & Miguel Goyena <miguel_goyena@cuatrovientos.org>
  */
-session_start();
-
-if (isset($_SESSION['team_id']) && !empty($_SESSION['team_id']) ) {
-    header('Location: team_matches.php?id=' . $_SESSION['team_id']);
-    exit();
-}
-require_once __DIR__ . '/../persistence/conf/PersistentManager.php';
+require_once __DIR__ . '/../templates/header.php';
 require_once __DIR__ . '/../persistence/DAO/TeamDAO.php';
+require_once __DIR__ . '/../utils/SessionHelper.php';
+
+SessionHelper::startSessionIfNotStarted();
 
 $error = ""; // Variable para guardar el mensaje de error
 $teamDAO = new TeamDAO();
@@ -33,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_team'])) {
             $teamDAO->insert($name, $stadium);
             
             // Redirigimos para limpiar el formulario y evitar reenvíos
-            header("Location: teams.php");
+            header("Location: /" . $urlApp . "app/teams.php");
             exit();
         }
     }
@@ -41,8 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_team'])) {
 
 // Obtenemos todos los equipos de la base de datos como un array de arrays asociativos
 $teams = $teamDAO->selectAll();
-
-include __DIR__ . '/../templates/header.php';
 ?>
 
 <div class="container mt-4">
@@ -88,7 +83,7 @@ include __DIR__ . '/../templates/header.php';
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title"><i class="fas fa-users mr-2 text-primary"></i><?= htmlspecialchars($team['nombre']) ?></h5>
                             <p class="card-text text-muted flex-grow-1"><i class="fas fa-map-marker-alt mr-2"></i><?= htmlspecialchars($team['estadio']) ?></p>
-                            <a href="team_matches.php?id=<?= htmlspecialchars($team['id']) ?>" class="btn btn-outline-primary mt-auto">Ver Partidos</a>
+                            <a href="/<?= $urlApp ?>app/team_matches.php?id=<?= htmlspecialchars($team['id']) ?>" class="btn btn-outline-primary mt-auto">Ver Partidos</a>
                         </div>
                     </div>
                 </div>

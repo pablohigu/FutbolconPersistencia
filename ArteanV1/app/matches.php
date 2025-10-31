@@ -7,11 +7,12 @@
  *
  * @author     Ander Frago & Miguel Goyena <miguel_goyena@cuatrovientos.org>
  */
-session_start();
-require_once __DIR__ . '/../persistence/conf/PersistentManager.php';
+require_once __DIR__ . '/../templates/header.php';
 require_once __DIR__ . '/../persistence/DAO/TeamDAO.php';
 require_once __DIR__ . '/../persistence/DAO/MatchDAO.php';
+require_once __DIR__ . '/../utils/SessionHelper.php';
 
+SessionHelper::startSessionIfNotStarted();
 $error = "";
 $teamDAO = new TeamDAO();
 $matchDAO = new MatchDAO();
@@ -34,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_match'])) {
         $error = "El equipo visitante ya tiene un partido en esta jornada.";
     } else {
         $matchDAO->insert($jornada, $local_id, $visitor_id, $resultado);
-        header("Location: matches.php?jornada=" . $jornada); // Redirigir a la jornada recién actualizada
+        header("Location: /" . $urlApp . "app/matches.php?jornada=" . $jornada); // Redirigir a la jornada recién actualizada
         exit();
     }
 }
@@ -49,7 +50,6 @@ if ($selected_jornada) {
     $matches_of_jornada = $matchDAO->selectByJornada($selected_jornada);
 }
 
-include __DIR__ . '/../templates/header.php';
 ?>
 
 <div class="container mt-4">

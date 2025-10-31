@@ -7,17 +7,17 @@
  *
  * @author     Ander Frago & Miguel Goyena <miguel_goyena@cuatrovientos.org>
  */
-session_start();
+require_once __DIR__ . '/utils/SessionHelper.php';
+require_once __DIR__ . '/templates/header.php'; // Incluir para tener $urlApp
+
+SessionHelper::startSessionIfNotStarted();
 
 // Si el usuario ha consultado un equipo anteriormente, se le redirige a la página de partidos de ese equipo.
 if (isset($_SESSION['team_id']) && !empty($_SESSION['team_id'])) {
-    header('Location: app/team_matches.php?id=' . $_SESSION['team_id']);
+    header('Location: /' . $urlApp . 'app/team_matches.php?id=' . $_SESSION['team_id']);
     exit();
 } else {
     // Si el usuario no tiene sesión (o no ha consultado un equipo), la página principal es la de equipos.
-    header('Location: app/teams.php');
+    header('Location: /' . $urlApp . 'app/teams.php');
     exit();
 }
-
-// El resto del código HTML de este archivo ya no es necesario,
-// ya que el script siempre redirige antes de llegar a él.

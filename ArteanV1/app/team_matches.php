@@ -7,17 +7,18 @@
  *
  * @author     Ander Frago & Miguel Goyena <miguel_goyena@cuatrovientos.org>
  */
-session_start();
-require_once __DIR__ . '/../persistence/conf/PersistentManager.php';
+require_once __DIR__ . '/../templates/header.php';
 require_once __DIR__ . '/../persistence/DAO/TeamDAO.php';
 require_once __DIR__ . '/../persistence/DAO/MatchDAO.php';
+require_once __DIR__ . '/../utils/SessionHelper.php';
 
+SessionHelper::startSessionIfNotStarted();
 // 1. Obtener el ID del equipo de la URL
 $team_id = $_GET['id'] ?? null;
 
 if (!$team_id || !is_numeric($team_id)) {
     // Si no hay ID o no es válido, redirigir a la página de equipos
-    header('Location: teams.php');
+    header('Location: /' . $urlApp . 'app/teams.php');
     exit();
 }
 
@@ -30,12 +31,11 @@ $team = $teamDAO->selectById($team_id);
 $matches = $matchDAO->selectById($team_id);
 // Si el equipo no existe, redirigir
 if (!$team) {
-    header('Location: teams.php');
+    header('Location: /' . $urlApp . 'app/teams.php');
     exit();
 }
 // Guardar en sesión el último equipo consultado
 $_SESSION['team_id'] = $team_id;
-include __DIR__ . '/../templates/header.php';
 ?>
 
 <div class="container mt-4">
@@ -44,7 +44,7 @@ include __DIR__ . '/../templates/header.php';
             <h2 class="mb-0"><i class="fas fa-users text-primary mr-2"></i><?= htmlspecialchars($team['nombre']) ?></h2>
             <p class="lead text-muted mb-0"><i class="fas fa-map-marker-alt mr-2"></i><?= htmlspecialchars($team['estadio']) ?></p>
         </div>
-        <a href="logout.php" class="btn btn-danger"><i class="fas fa-sign-out-alt mr-2"></i>Salir</a>
+        <a href="/<?= $urlApp ?>app/logout.php" class="btn btn-danger"><i class="fas fa-sign-out-alt mr-2"></i>Salir</a>
     </div>
 
     <div class="card">

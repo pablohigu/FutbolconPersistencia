@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../conf/PersistentManager.php';
 abstract class GenericDAO {
 
   //Conexión a BD

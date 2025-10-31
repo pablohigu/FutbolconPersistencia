@@ -7,10 +7,8 @@
  *
  * @author     Ander Frago & Miguel Goyena <miguel_goyena@cuatrovientos.org>
  */
-
-  // NOTA: El antiguo SessionHelper para login/logout ya no es necesario aquí.
-  // La lógica de sesión se manejará en las páginas que lo requieran.
-  // La variable $loggedin y $user han sido eliminadas.
+  $dir = __DIR__;
+  $urlApp = "Futbol/ArteanV1/";
 ?>
 <head>
     <meta charset="utf-8">
@@ -34,17 +32,17 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="/Futbol/ArteanV1/index.php">
+    <a class="navbar-brand" href="/<?= $urlApp ?>index.php">
         <i class="fas fa-futbol mr-2"></i>Competición
     </a>
 
     <div class="collapse navbar-collapse" id="navbarToggler">
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
             <li class="nav-item">
-                <a class="nav-link" href="/Futbol/ArteanV1/app/teams.php">Equipos</a>
+                <a class="nav-link" href="/<?= $urlApp ?>app/teams.php">Equipos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/Futbol/ArteanV1/app/matches.php">Partidos</a>
+                <a class="nav-link" href="/<?= $urlApp ?>app/matches.php">Partidos</a>
             </li>
         </ul>
     </div>
